@@ -1,0 +1,40 @@
+@use 'sass:math'
+
+.ispinner
+  position: relative
+  width: 20px
+  height: 20px
+  .ispinner-blade
+    position: absolute
+    top: 6.5px
+    left: 8.5px
+    width: 2.5px
+    height: 6.5px
+    background-color: #8e8e93
+    border-radius: 1.25px
+    animation: iSpinnerBlade 1s linear infinite
+    will-change: opacity
+    @for $i from 1 through 8
+      &:nth-child(#{$i})
+        transform: rotate(math.div(360deg, 8) * $i) translateY(-6.5px)
+        animation-delay: math.div(1s, 8) * ($i - 14)
+  &.ispinner-large
+    width: 35px
+    height: 35px
+    .ispinner-blade
+      top: 11.5px
+      left: 15px
+      width: 5px
+      height: 12px
+      border-radius: 2.5px
+      @for $i from 1 through 8
+        &:nth-child(#{$i})
+          transform: rotate(math.div(360deg, 8) * $i) translateY(-11.5px)
+
+@keyframes iSpinnerBlade
+  0%
+    opacity: 0.85
+  50%
+    opacity: 0.25
+  100%
+    opacity: 0.25
